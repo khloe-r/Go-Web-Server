@@ -1,0 +1,28 @@
+<html>
+  <head>
+    <title>To Do List</title>
+  </head>
+  <body>
+    <h2 style="font-family: sans-serif; color: darkblue;">To Do</h2>
+    <ul>
+      {{if .}}
+        {{range .}}
+            {{if ne . ""}}
+                <div style="display: flex;gap: 10px;">
+                  <li style="font-family: sans-serif;">{{.}} </li>
+                  <form method="post" action="/delete-todo">
+                    <input type="hidden" name="item" value="{{.}}">
+                    <button style="background-color: darkblue; color: white;" type="submit" type="submit">Delete</button>
+                  </form>
+                </div>
+            {{end}}
+        {{end}}
+      {{end}}
+    </ul>
+    <form method="post" action="/add-todo">
+      <label style="font-family: sans-serif;">Add To Do Item </label><input name="item" type="text" value=""/>
+
+      <input style="background-color: darkblue; color: white;" type="submit" value="SUBMIT" />
+    </form>
+  </body>
+</html>
